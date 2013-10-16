@@ -6,7 +6,7 @@ Tunr2::Application.routes.draw do
   end
 
   resources :artists, only: [:index, :show] do
-    resources :songs, only: [:show] do
+    resources :songs, only: [:show], shallow: true do
       member do
         post "purchase"
       end
