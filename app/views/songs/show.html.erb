@@ -1,2 +1,4 @@
-<h1>Songs#show</h1>
-<p>Find me in app/views/songs/show.html.erb</p>
+<h1><%= @song.name %></h1>
+<p><%= @song.artist.name %></p>
+
+<iframe src="https://embed.spotify.com/?uri=<%= @song.spotify_uri %>" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
