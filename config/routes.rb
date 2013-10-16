@@ -1,6 +1,6 @@
 Tunr2::Application.routes.draw do
 
-  resources :users do
+  resources :users, except: [:index] do
     resources :owned_songs, only: [:index, :show]
     resources :playlists, shallow: true
   end
