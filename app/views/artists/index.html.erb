@@ -1,0 +1,19 @@
+<h1>Listing artists</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @artists.each do |artist| %>
+      <tr>
+        <td><%= link_to 'Show', artist %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
