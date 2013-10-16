@@ -1,9 +1,9 @@
 class CreateSongs < ActiveRecord::Migration
   def change
     create_table :songs do |t|
-      t.string :name
-      t.references :artist, index: true
-      t.string :spotify_uri
+      t.string :name, null: false
+      t.references :artist, index: true, null: false
+      t.string :spotify_uri, null: false
 
       t.timestamps
     end
@@ -21,8 +21,8 @@ class CreateSongs < ActiveRecord::Migration
 
       dir.down do
         execute <<-SQL
-          ALTER TABLE users
-            DROP FOREIGN KEY fk_songs_artists
+          ALTER TABLE songs
+            DROP CONSTRAINT fk_songs_artists
         SQL
       end
     end

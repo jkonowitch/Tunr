@@ -17,15 +17,15 @@ ActiveRecord::Schema.define(version: 20131016200051) do
   enable_extension "plpgsql"
 
   create_table "artists", force: true do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "songs", force: true do |t|
-    t.string   "name"
-    t.integer  "artist_id"
-    t.string   "spotify_uri"
+    t.string   "name",        null: false
+    t.integer  "artist_id",   null: false
+    t.string   "spotify_uri", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20131016200051) do
   add_index "songs", ["artist_id"], name: "index_songs_on_artist_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "email"
+    t.string   "email",      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
