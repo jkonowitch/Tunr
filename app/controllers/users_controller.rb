@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :logged_in!, :authorize_user!, only: [:edit, :update, :destroy]
 
   # GET /users
   def index
@@ -17,7 +18,6 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
   end
 
   # POST /users
@@ -33,8 +33,6 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
-    @user = User.find(params[:id])
-
     if @user.update(user_params)
       redirect_to @user, notice: 'User was successfully updated.'
     else
@@ -50,8 +48,13 @@ class UsersController < ApplicationController
 
   private
 
-    # Only allow a trusted parameter "white list" through.
-    def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation)
-    end
+  # Only allow a trusted parameter "white list" through.
+  def user_params
+    params.require(:user).permit(:email, :password, :password_confirmation)
+  end
+
+  def authorize_user!
+    @user = User.find(params[:id])
+    redirect_to "/" unless current_user?(@user)
+  end
 end

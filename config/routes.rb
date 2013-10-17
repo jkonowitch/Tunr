@@ -13,4 +13,5 @@ Tunr2::Application.routes.draw do
     end
   end
 
+  resource :session, only: [:create, :new, :destroy]
 end

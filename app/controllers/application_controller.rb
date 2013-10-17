@@ -11,4 +11,11 @@ class ApplicationController < ActionController::Base
     current_user.present?
   end
 
+  def logged_in!
+    redirect_to "/" unless logged_in?
+  end
+
+  def current_user?(user)
+    current_user == user
+  end
 end
