@@ -2,3 +2,9 @@
 <p><%= @song.artist.name %></p>
 
 <iframe src="https://embed.spotify.com/?uri=<%= @song.spotify_uri %>" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+
+<% if logged_in? %>
+  <div>
+    <%= link_to "Purchase", purchase_song_path(@song), method: :post %>
+  </div>
+<% end %>
