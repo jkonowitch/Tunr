@@ -5,8 +5,18 @@ class User < ActiveRecord::Base
   has_secure_password
   has_and_belongs_to_many :songs
 
-  # def purchase(song)
-  #   if
-  #     self.songs << song
-  # end
+  def purchase(song)
+    if afford?(song) && pay_for(song)
+      self.songs << song
+    end
+  end
+
+  def afford?(song)
+    balance >= song.price
+  end
+
+  def pay_for(song)
+    self.balance -= song.price
+    save
+  end
 end
