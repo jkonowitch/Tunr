@@ -5,3 +5,11 @@ development:
   pool: 5
   username: wdi
   password:
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: tunr2_test
+  pool: 5
+  username: wdi
+  password:
